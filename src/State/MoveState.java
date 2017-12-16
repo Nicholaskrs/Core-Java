@@ -1,6 +1,6 @@
 package State;
 
-public class MoveState {
+public class MoveState extends State{
 	private static MoveState Instance=new MoveState();
 	private MoveState(){
 		

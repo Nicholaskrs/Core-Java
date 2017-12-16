@@ -2,20 +2,11 @@ package Character;
 
 import java.awt.Image;
 
-import Character.GameObject.Coordinate;
+import Until.Coordinate;
+
 
 public abstract class GameObject {
-	public class Coordinate{
-		public Coordinate(int x,int y) {
-			this.x=x;
-			this.y=y;
-			// TODO Auto-generated constructor stub
-		}
-		public int x,y;
-
-		
-		
-	}
+	
 
 	protected Coordinate coordiante;
 	protected Image image;

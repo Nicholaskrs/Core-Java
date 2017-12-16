@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import State.IdleState;
 import State.State;
+import Until.Coordinate;
 import Until.ImageHelper;
 
 
@@ -19,7 +20,8 @@ public abstract class Character extends GameObject{
 	}
 	
 	
-	
+
+	public int speed=5;
 	protected Dimension size;
 	protected State state;
 	protected int dir;
@@ -37,12 +39,15 @@ public abstract class Character extends GameObject{
 		image=idle.get(dir);
 		coordiante=new Coordinate(x, y);
 		size=new Dimension(width, height);
+		hp=100;
 		
 	}
 	public void attack(){
 		
 		image=attack.get(dir).get(count);
-		if(count==attack.get(dir).size()) state=IdleState.getInstance();
+		if(count==attack.get(dir).size()-1) {state=IdleState.getInstance(); count=0;}
+		
+		count++;
 		
 	}
 	public void idle(){
@@ -50,9 +55,14 @@ public abstract class Character extends GameObject{
 		count=0;
 	}
 	public void move(Coordinate coor){
-		if(count==movement.get(dir).size())count=0;
+		int prevdir=dir;
+		dir=getDirection(coor);
+		if(count==movement.get(dir).size()-1)count=-1;
+		if(prevdir!=dir)count=-1;
+			count++;
 		image=movement.get(dir).get(count);
-		count++;
+		
+		this.coordiante=coor;
 	}
 	public void die(){
 		image=die.get(count);
@@ -69,7 +79,7 @@ public abstract class Character extends GameObject{
 		else if(coor.y<coordiante.y){
 			return Direction.UP;
 		}
-		else if(coor.x>coordiante.x){
+		else if(coor.x<coordiante.x){
 			return Direction.LEFT;
 		}
 		else if(coor.x==coordiante.x&& coor.y==coordiante.y){
@@ -138,6 +148,7 @@ public abstract class Character extends GameObject{
 		return state;
 	}
 	public void setState(State state) {
+		if(this.state!=state)count=0;
 		this.state = state;
 	}
 	
