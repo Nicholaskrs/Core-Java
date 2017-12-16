@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import Character.Character;
 import Character.GameObject;
 
 public abstract class SceneTemplate extends JFrame{
@@ -14,6 +15,7 @@ public abstract class SceneTemplate extends JFrame{
 	public SceneTemplate(Image backGroundImage) {
 		this.backgroundImage=backGroundImage;
 		setSize(800,600);
+		
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
@@ -36,11 +38,6 @@ public abstract class SceneTemplate extends JFrame{
 		}
 	}
 	
-	public void render(){
-		for (GameObject gameObject : gameObjects) {
-			gameObject.render();
-		}
-	}
 	
 	public void add(GameObject gameObject){
 		gameObjects.add(gameObject);
@@ -56,6 +53,9 @@ public abstract class SceneTemplate extends JFrame{
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
+		for (GameObject gameObject2 : gameObjects) {
+			g.drawImage(gameObject2.getImage(),gameObject2.getCoordiante().x, gameObject2.getCoordiante().y, null);
+		}
 		g.drawImage(backgroundImage,0,0,this.getWidth(),getHeight(),null);
 	}
 
