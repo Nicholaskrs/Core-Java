@@ -53,10 +53,11 @@ public abstract class SceneTemplate extends JFrame{
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
 		super.paint(g);
+		g.drawImage(backgroundImage,0,0,this.getWidth(),getHeight(),null);
 		for (GameObject gameObject2 : gameObjects) {
 			g.drawImage(gameObject2.getImage(),gameObject2.getCoordiante().x, gameObject2.getCoordiante().y, null);
 		}
-		g.drawImage(backgroundImage,0,0,this.getWidth(),getHeight(),null);
+		
 	}
 
 }

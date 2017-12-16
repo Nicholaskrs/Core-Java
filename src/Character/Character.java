@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import State.IdleState;
 import State.State;
 import Until.ImageHelper;
 
@@ -24,24 +25,24 @@ public abstract class Character extends GameObject{
 	protected int dir;
 	protected int hp;
 	protected int atk;
-	protected ArrayList<ArrayList<Image>>movement;
-	protected ArrayList<Image>idle;
-	protected ArrayList<Image> die;
-	protected ArrayList<ArrayList<Image>>attack;
+	protected ArrayList<ArrayList<Image>>movement=new ArrayList<>();
+	protected ArrayList<Image>idle=new ArrayList<>();
+	protected ArrayList<Image> die=new ArrayList<>();
+	protected ArrayList<ArrayList<Image>>attack=new ArrayList<>();
 	protected int count=0;
 
 	public Character(int x,int y, String path,int width,int height) {
+		insertImage(path);
 		dir=Direction.DOWN;
 		image=idle.get(dir);
 		coordiante=new Coordinate(x, y);
-		insertImage(path);
 		size=new Dimension(width, height);
 		
 	}
 	public void attack(){
 		
 		image=attack.get(dir).get(count);
-		if(count==attack.get(dir).size())count=0;
+		if(count==attack.get(dir).size()) state=IdleState.getInstance();
 		
 	}
 	public void idle(){

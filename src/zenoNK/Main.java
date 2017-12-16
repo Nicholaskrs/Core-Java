@@ -11,7 +11,7 @@ import Scene.GameScene;
 
 public class Main {
 	public Main() {
-		File jpegFile = new File("Images/background.jpg");
+		File jpegFile = new File("Images/Background/background.jpg");
 		BufferedImage image=null;
 		try {
 			image = ImageIO.read(jpegFile);
