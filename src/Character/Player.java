@@ -6,7 +6,7 @@ import State.IdleState;
 public class Player  extends Character{
 
 	
-
+	public int range=40;
 	public Player(int x, int y, String path, int width, int height) {
 		super(x, y, path, width, height);
 		speed=10;

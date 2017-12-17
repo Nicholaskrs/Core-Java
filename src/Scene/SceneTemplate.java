@@ -42,6 +42,9 @@ public abstract class SceneTemplate extends JFrame{
 	public void add(GameObject gameObject){
 		gameObjects.add(gameObject);
 	}
+	public void remove(GameObject gameObject){
+		gameObjects.remove(gameObject);
+	}
 	
 	@Override
 	public void repaint() {
