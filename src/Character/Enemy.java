@@ -1,5 +1,7 @@
 package Character;
 
+import State.DieState;
+import State.IdleState;
 import Until.Coordinate;
 
 public class Enemy extends Character{
@@ -15,22 +17,37 @@ public class Enemy extends Character{
 
 	@Override
 	public void update() {
-		/*
-		int xdif=target.coordiante.x-coordiante.x;
-		int ydif=target.coordiante.y-coordiante.y;
+	
+		if(getState()==DieState.getInstance()){
+			image=die.get(0);
+			return;
+		}
+		int xdif=target.coordiante.x+target.getSize().width/4-coordiante.x;
+		int ydif=target.coordiante.y+target.getSize().height/4-coordiante.y;
 		if(xdif!=0){
-				if(xdif<speed)
+				if(Math.abs(xdif)<speed)
 					move(new Coordinate(coordiante.x+xdif, coordiante.y));
-				else 
+				else {
+					if(xdif>0){
 					move(new Coordinate(coordiante.x+speed, coordiante.y));
+					}
+					else
+						move(new Coordinate(coordiante.x-speed, coordiante.y));
+					
+				}
 			
 		}else if(ydif!=0){
-				if(ydif<speed)
+				if(Math.abs(ydif)<speed)
 					move(new Coordinate(coordiante.x, coordiante.y+ydif));
-				else 
+				else {
+					if(ydif>0){
 					move(new Coordinate(coordiante.x, coordiante.y+speed));
+					}
+					else
+						move(new Coordinate(coordiante.x, coordiante.y-speed));}
 		}
-		*/
+		else
+			this.state=IdleState.getInstance();
 		
 //		
 	}

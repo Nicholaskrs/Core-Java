@@ -11,15 +11,10 @@ import Scene.GameScene;
 
 public class Main {
 	public Main() {
-		File jpegFile = new File("Images/Background/background.jpg");
-		BufferedImage image=null;
-		try {
-			image = ImageIO.read(jpegFile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		new GameScene(image);
+		new MainFrame();
+	}
+	public static void callGameFrame(){
+		
 	}
 	public static void main(String[] args) {
 		new Main();

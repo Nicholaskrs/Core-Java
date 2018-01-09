@@ -1,5 +1,6 @@
 package Character;
 
+import java.awt.Dimension;
 import java.awt.Image;
 
 import Until.Coordinate;
@@ -8,6 +9,7 @@ import Until.Coordinate;
 public abstract class GameObject {
 	
 
+	protected Dimension size;
 	protected Coordinate coordiante;
 	protected Image image;
 
@@ -22,6 +24,12 @@ public abstract class GameObject {
 	}
 	public void setCoordiante(Coordinate coordiante) {
 		this.coordiante = coordiante;
+	}
+	public Dimension getSize() {
+		return size;
+	}
+	public void setSize(Dimension size) {
+		this.size = size;
 	}
 	public abstract void update();
 

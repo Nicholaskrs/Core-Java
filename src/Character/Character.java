@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import State.DieState;
 import State.IdleState;
 import State.State;
 import Until.Coordinate;
@@ -22,7 +23,6 @@ public abstract class Character extends GameObject{
 	
 
 	public int speed=5;
-	protected Dimension size;
 	protected State state;
 	protected int dir;
 	protected int hp;
@@ -39,7 +39,7 @@ public abstract class Character extends GameObject{
 		image=idle.get(dir);
 		coordiante=new Coordinate(x, y);
 		size=new Dimension(width, height);
-		hp=100;
+		hp=3;
 		
 	}
 	public void attack(){
@@ -67,6 +67,7 @@ public abstract class Character extends GameObject{
 	public void die(){
 		image=die.get(count);
 		count++;
+		
 	}
 	public int getDirection(Coordinate coor){
 		if(coor.x>coordiante.x){
@@ -92,7 +93,7 @@ public abstract class Character extends GameObject{
 	
 	public void insertImage(String path){
 		insertAttackImage(path+"/Attack");
-		insertDieImage(path+"/Die");
+		insertDieImage(path+"/Dead");
 		insertIdleImage(path+"/Idle");
 		insertMovementImage(path+"/Move");
 		
@@ -120,12 +121,7 @@ public abstract class Character extends GameObject{
 	public void insertDieImage(String path){
 		die=imageHelper.getAllImagesFromDirectory(path);
 	}
-	public Dimension getSize() {
-		return size;
-	}
-	public void setSize(Dimension size) {
-		this.size = size;
-	}
+	
 	public int getDir() {
 		return dir;
 	}
@@ -137,6 +133,9 @@ public abstract class Character extends GameObject{
 	}
 	public void setHp(int hp) {
 		this.hp = hp;
+		if(this.hp==0){
+			count=0;
+		}
 	}
 	public int getAtk() {
 		return atk;
